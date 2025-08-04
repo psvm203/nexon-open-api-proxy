@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -35,9 +35,6 @@ jobs:
       - name: Build workers project
         run: worker-build --release
 
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
