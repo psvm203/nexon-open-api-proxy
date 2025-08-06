@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Restore cache
+      - name: Cache Cargo
         uses: actions/cache@v4
         with:
           path: |
@@ -22,6 +22,12 @@ jobs:
             ~/.cargo/registry
             target
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm
 
       - name: Add wasm target
         run: rustup target add wasm32-unknown-unknown
