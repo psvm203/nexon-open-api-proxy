@@ -38,6 +38,9 @@ jobs:
             cargo install -q worker-build
           fi
 
+      - name: Generate key file from secrets
+        run: echo "${{ secrets.API_KEY }}" > src/key.txt
+
       - name: Build workers project
         run: worker-build --release
 
