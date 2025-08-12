@@ -35,8 +35,7 @@ async fn fetch(req: Request, _env: Env, _ctx: Context) -> Result<Response> {
             method: Method::Get,
             ..RequestInit::default()
         },
-    )
-    .unwrap();
+    )?;
 
     let mut response = Fetch::Request(request).send().await?.cloned()?;
     let response_headers = response.headers_mut();
